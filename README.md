@@ -9,7 +9,7 @@ Notable features include:
     * Sidekiq, for async processing
     * Brakeman and Rubocop for static analysis
     * Bullet for catching performance gotchas
-    * Rename, for renaming the app from GenericApi
+    * Rename, for renaming the app from CustomFields
 * Tests, tests, tests
     * Prefer factories to fixtures, and Minitest over RSpec
 * Refined API-only Authentication

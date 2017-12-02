@@ -27,7 +27,7 @@ gem 'sidekiq'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'database_cleaner'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -39,10 +39,9 @@ group :development do
   gem 'rubocop'
   gem 'bullet'
   gem 'annotate'
-  gem 'rename'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-ruby '2.4.1'
+ruby '2.4.2'
