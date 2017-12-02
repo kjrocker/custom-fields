@@ -1,5 +1,5 @@
 module V1
-  class UsersController < ApiController
+  class FieldsController < ApiController
     before_action :authenticate_user
     before_action :authorize_user, only: [:update, :show, :destroy]
     before_action :set_field, only: [:update, :show, :destroy]
@@ -9,8 +9,7 @@ module V1
     end
 
     def create
-      return render json: {}, status: :forbidden if current_user.present?
-      field = Field.new(field_params)
+      field = current_user.fields.build(field_params)
       if field.save
         render json: field, status: :created
       else
