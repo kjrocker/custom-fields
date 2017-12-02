@@ -10,18 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609051647) do
+ActiveRecord::Schema.define(version: 20171202032353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "citext"
 
-  create_table "users", force: :cascade do |t|
-    t.citext   "email",           null: false
-    t.string   "password_digest", null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+  create_table "fields", force: :cascade do |t|
+    t.string "key"
+    t.string "label"
+    t.bigint "owner_id"
+    t.index ["owner_id"], name: "index_fields_on_owner_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.citext "email", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  add_foreign_key "fields", "users", column: "owner_id"
 end
