@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202032353) do
+ActiveRecord::Schema.define(version: 20171202040435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,23 @@ ActiveRecord::Schema.define(version: 20171202032353) do
     t.index ["owner_id"], name: "index_fields_on_owner_id"
   end
 
+  create_table "taggings", force: :cascade do |t|
+    t.bigint "field_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["field_id"], name: "index_taggings_on_field_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.bigint "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_tags_on_owner_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.citext "email", null: false
     t.string "password_digest", null: false
@@ -32,4 +49,7 @@ ActiveRecord::Schema.define(version: 20171202032353) do
   end
 
   add_foreign_key "fields", "users", column: "owner_id"
+  add_foreign_key "taggings", "fields"
+  add_foreign_key "taggings", "tags"
+  add_foreign_key "tags", "users", column: "owner_id"
 end
