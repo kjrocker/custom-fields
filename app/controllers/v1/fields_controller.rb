@@ -1,8 +1,8 @@
 module V1
   class FieldsController < ApiController
     before_action :authenticate_user
-    before_action :authorize_user, only: [:update, :show, :destroy]
     before_action :set_field, only: [:update, :show, :destroy]
+    before_action :authorize_user, only: [:update, :show, :destroy]
 
     def index
       render json: current_user.fields
@@ -37,14 +37,14 @@ module V1
     private
 
     def set_field
-      @field = Fields.find(params[:id])
+      @field = Field.find(params[:id])
     end
 
     def authorize_user
-      render json: {}, status: :not_found unless field.owner_id === current_user.id
+      render json: {}, status: :not_found unless @field.owner_id === current_user.id
     end
 
-    def user_params
+    def field_params
       params.require(:field).permit(:key, :label)
     end
   end

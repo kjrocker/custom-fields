@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :fields, foreign_key: :owner_id
+  has_many :tags, foreign_key: :owner_id
 
   validates :email, presence: true, uniqueness: true
 

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       post 'user_token' => 'user_token#create'
       resources :users, only: [:create, :update, :show]
       resources :fields
+      resources :tags
     end
   end
 
