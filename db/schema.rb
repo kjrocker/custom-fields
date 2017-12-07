@@ -10,11 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202040435) do
+ActiveRecord::Schema.define(version: 20171230203618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "citext"
+  enable_extension "hstore"
+
+  create_table "field_validations", force: :cascade do |t|
+    t.bigint "field_id"
+    t.bigint "validation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["field_id"], name: "index_field_validations_on_field_id"
+    t.index ["validation_id"], name: "index_field_validations_on_validation_id"
+  end
 
   create_table "fields", force: :cascade do |t|
     t.string "key"
@@ -28,6 +38,7 @@ ActiveRecord::Schema.define(version: 20171202040435) do
     t.bigint "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["field_id", "tag_id"], name: "index_taggings_on_ids", unique: true
     t.index ["field_id"], name: "index_taggings_on_field_id"
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
   end
@@ -48,8 +59,20 @@ ActiveRecord::Schema.define(version: 20171202040435) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  create_table "validations", force: :cascade do |t|
+    t.string "name"
+    t.bigint "owner_id"
+    t.hstore "options"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_validations_on_owner_id"
+  end
+
+  add_foreign_key "field_validations", "fields"
+  add_foreign_key "field_validations", "validations"
   add_foreign_key "fields", "users", column: "owner_id"
   add_foreign_key "taggings", "fields"
   add_foreign_key "taggings", "tags"
   add_foreign_key "tags", "users", column: "owner_id"
+  add_foreign_key "validations", "users", column: "owner_id"
 end
