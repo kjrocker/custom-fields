@@ -4,6 +4,10 @@ module V1
     before_action :set_field, only: [:update, :show, :destroy]
     before_action :authorize_user, only: [:update, :show, :destroy]
 
+    def validate
+      render json: {}, status: :ok
+    end
+
     def index
       render json: current_user.fields
     end
