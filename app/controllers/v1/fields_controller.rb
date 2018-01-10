@@ -1,8 +1,17 @@
 module V1
   class FieldsController < ApiController
     before_action :authenticate_user
-    before_action :set_field, only: [:update, :show, :destroy]
-    before_action :authorize_user, only: [:update, :show, :destroy]
+    before_action :set_field, only: [:update, :show, :destroy, :validate]
+    before_action :authorize_user, only: [:update, :show, :destroy, :validate]
+
+    def validate
+      result = @field.process_value(params[:value])
+      if result.length == 0
+        render json: {}, status: :ok
+      else
+        render json: result, status: :bad_request
+      end
+    end
 
     def index
       render json: current_user.fields
@@ -13,7 +22,7 @@ module V1
       if field.save
         render json: field, status: :created
       else
-        render json: field.errors, status: :unprocessable_entity
+        render json: field.errors, status: :bad_request
       end
     end
 
@@ -21,7 +30,7 @@ module V1
       if @field.update(field_params)
         render json: @field, status: 200
       else
-        render json: @field.errors, status: :unprocessable_entity
+        render json: @field.errors, status: :bad_request
       end
     end
 
@@ -37,7 +46,7 @@ module V1
     private
 
     def set_field
-      @field = Field.find(params[:id])
+      @field = Field.find(if params[:id].present? then params[:id] else params[:field_id] end)
     end
 
     def authorize_user
