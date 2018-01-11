@@ -45,7 +45,7 @@ module V1
     end
 
     def field_params
-      params.require(:field).permit(:key, :label)
+      params.require(:field).permit(:name)
     end
   end
 end

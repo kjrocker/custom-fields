@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :field do
-    sequence(:key) { |n| "field-#{n}" }
-    label "Custom Field"
+    sequence(:name) { |n| "field-#{n}" }
     association :owner, factory: :user
   end
 end

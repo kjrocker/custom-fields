@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create, :update, :show]
       resources :fields
       resources :tags
+      resources :validations
       post "taggings" => 'taggings#create'
       delete "taggings" => "taggings#destroy"
       post "field-validations" => 'field_validations#create'
