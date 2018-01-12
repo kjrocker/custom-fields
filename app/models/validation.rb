@@ -15,4 +15,14 @@ class Validation < ApplicationRecord
   #   length: 'length',
   #   numericality: 'numericality'
   # }
+
+  def process(value)
+    puts options.inspect
+    puts options['minimum'].present?
+    if options['minimum'].present? && value.length < options['minimum'].to_i
+      return "#{value} is too short!"
+    else
+      return false
+    end
+  end
 end

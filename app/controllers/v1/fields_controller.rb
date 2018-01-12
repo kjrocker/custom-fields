@@ -1,11 +1,16 @@
 module V1
   class FieldsController < ApiController
     before_action :authenticate_user
-    before_action :set_field, only: [:update, :show, :destroy]
-    before_action :authorize_user, only: [:update, :show, :destroy]
+    before_action :set_field, only: [:update, :show, :destroy, :validate]
+    before_action :authorize_user, only: [:update, :show, :destroy, :validate]
 
     def validate
-      render json: {}, status: :ok
+      result = @field.process_value(params[:value])
+      if result.length == 0
+        render json: {}, status: :ok
+      else
+        render json: result, status: :unprocessable_entity
+      end
     end
 
     def index
@@ -41,7 +46,7 @@ module V1
     private
 
     def set_field
-      @field = Field.find(params[:id])
+      @field = Field.find(if params[:id].present? then params[:id] else params[:field_id] end)
     end
 
     def authorize_user
