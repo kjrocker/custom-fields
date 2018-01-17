@@ -6,10 +6,10 @@ module V1
 
     def validate
       result = @field.process_value(params[:value])
-      if result.length == 0
+      if result.is_valid?
         render json: {}, status: :ok
       else
-        render json: result, status: :bad_request
+        render json: result.errors, status: :bad_request
       end
     end
 
