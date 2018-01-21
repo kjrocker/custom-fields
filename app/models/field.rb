@@ -8,6 +8,6 @@ class Field < ApplicationRecord
   has_many :validations, through: :field_validations
 
   def process_value(value)
-    Validation::Result.new(self, value)
+    Validation::Result.new(validations, value)
   end
 end

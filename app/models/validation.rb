@@ -4,23 +4,22 @@ class Validation < ApplicationRecord
   has_many :fields, through: :field_validations
 
   def process(value)
-    response = if is_valid?(value) then :valid else :invalid end
-    ValidationResponse.new(response)
+    ValidationResponse.new(self, value)
   end
 
-  def is_valid?(value)
-    true
+  def is_valid(value)
+    :valid
   end
 
   class ValidationResponse
-    attr_reader :sym, :str
-    def initialize(sym)
-      @sym = sym
-      @str = sym.to_s
+    attr_reader :status, :message
+    def initialize(validation, value)
+      @status = validation.is_valid(value)
+      @message = @status.to_s
     end
 
     def is_valid?
-      @is_valid ||= sym == :valid
+      @is_valid ||= status == :valid
     end
 
     def is_invalid?
