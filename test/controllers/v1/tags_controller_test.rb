@@ -12,7 +12,7 @@ module V1
       assert_response :success
     end
 
-    test "should create field" do
+    test "should create tag" do
       assert_difference('Tag.count') do
         post tags_url, params: { tag: attributes_for(:tag) }, headers: authenticated_header(@user), as: :json
       end
@@ -25,9 +25,27 @@ module V1
     end
 
     test "should update tag" do
-      patch tag_url(@tag), params: { tag: attributes_for(:tag) },
+      put tag_url(@tag), params: { tag: attributes_for(:tag) },
         headers: authenticated_header(@user), as: :json
       assert_response 200
+    end
+
+    test "should create association between field and tag" do
+      field = @user.fields.create(name: "Field")
+      assert_difference('field.tags.count', 1) do
+        put tag_url(@tag), params: { tag: attributes_for(:tag, field_ids: [field.id]) },
+          headers: authenticated_header(@user), as: :json
+      end
+      assert_response 200
+    end
+
+    test "should prevent association with other users fields" do
+      field = create(:field)
+      assert_difference('field.tags.count', 0) do
+        put tag_url(@tag), params: { tag: attributes_for(:tag, field_ids: [field.id]) },
+          headers: authenticated_header(@user), as: :json
+      end
+      assert_response 404
     end
 
     test "should destroy tag" do

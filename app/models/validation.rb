@@ -2,6 +2,7 @@ class Validation < ApplicationRecord
   belongs_to :owner, class_name: 'User'
   has_many :field_validations, dependent: :destroy
   has_many :fields, through: :field_validations
+  validates :type, presence: true
 
   def process(value)
     ValidationResponse.new(self, value)

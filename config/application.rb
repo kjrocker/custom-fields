@@ -31,6 +31,9 @@ module CustomFields
     # Middleware for throttling/blocking requests
     config.middleware.use Rack::Attack
 
+    # Serialize using JSON-API standard
+    ActiveModelSerializers.config.adapter = :json_api
+
     # Middleware to allow cross-origin AJAX
     config.middleware.insert_before 0, Rack::Cors do
       allow do

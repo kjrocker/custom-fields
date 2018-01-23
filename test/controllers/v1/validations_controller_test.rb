@@ -30,6 +30,24 @@ module V1
       assert_response 200
     end
 
+    # test "should create association between field and validation" do
+    #   field = @user.fields.create(name: "Field")
+    #   assert_difference('field.validations.count', 1) do
+    #     put validation_url(@validation), params: { validation: attributes_for(:validation, field_ids: [field.id]) },
+    #       headers: authenticated_header(@user), as: :json
+    #   end
+    #   assert_response 200
+    # end
+    #
+    # test "should prevent association with other users fields" do
+    #   field = create(:field)
+    #   assert_difference('field.validations.count', 0) do
+    #     put validation_url(@validation), params: { validation: attributes_for(:validation, field_ids: [field.id]) },
+    #       headers: authenticated_header(@user), as: :json
+    #   end
+    #   assert_response 404
+    # end
+
     test "should destroy validation" do
       assert_difference('Validation.count', -1) do
         delete validation_url(@validation), headers: authenticated_header(@user), as: :json

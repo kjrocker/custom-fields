@@ -3,10 +3,17 @@ require 'test_helper'
 class ValidationTest < ActiveSupport::TestCase
   setup do
     @user = create(:user)
-    @validation = create(:validation, owner: @user)
   end
 
-  test "when testing" do
-    assert @validation.owner == @user
+  test "requires a type" do
+    assert_raise do
+      create(:validation, type: '', owner: @user)
+    end
+  end
+
+  test "requires a user" do
+    assert_raise do
+      create(:validation, owner: nil)
+    end
   end
 end

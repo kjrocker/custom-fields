@@ -3,6 +3,7 @@ module V1
     before_action :authenticate_user
     before_action :set_tag, only: [:update, :show, :destroy]
     before_action :authorize_user, only: [:update, :show, :destroy]
+    before_action :authorize_fields, only: [:create, :update]
 
     def index
       render json: current_user.tags
@@ -41,11 +42,19 @@ module V1
     end
 
     def authorize_user
+      # Don't allow access to other users tags
       render json: {}, status: :not_found unless @tag.owner_id === current_user.id
     end
 
+    def authorize_fields
+      field_ids = tag_params[:field_ids]
+      if (field_ids.present?)
+        render json: {}, status: :not_found if Field.where(id: field_ids).pluck(:owner_id).any? { |id| id != current_user.id }
+      end
+    end
+
     def tag_params
-      params.require(:tag).permit(:name)
+      params.require(:tag).permit(:name, field_ids: [])
     end
   end
 end
