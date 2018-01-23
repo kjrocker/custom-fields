@@ -1,0 +1,3 @@
+export const API_GET_SUCCESS = 'API_GET_SUCCESS';
+export const API_GET_FAILURE = 'API_GET_FAILURE';
+export const API_GET_REQUEST = 'API_GET_REQUEST';
