@@ -8,10 +8,6 @@ Rails.application.routes.draw do
       end
       resources :tags
       resources :validations
-      post "taggings" => 'taggings#create'
-      delete "taggings" => "taggings#destroy"
-      post "field-validations" => 'field_validations#create'
-      delete "field-validations" => "field_validations#destroy"
       # resources :taggings, only: [:create, :destroy]
     end
   end

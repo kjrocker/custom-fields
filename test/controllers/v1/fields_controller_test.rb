@@ -30,37 +30,37 @@ module V1
       assert_response 200
     end
 
-    # test "should create association between field and tag" do
-    #   tag = @user.tags.create(name: "Tag")
-    #   assert_difference('@field.tags.count',1) do
-    #     put field_url(@field), params: { field: attributes_for(:field, tag_ids: [tag.id])}, headers: authenticated_header(@user), as: :json
-    #   end
-    #   assert_response 200
-    # end
-    #
-    # test "should create association between field and validation" do
-    #   validation = @user.validations.create(name: "Validation", type: "Required")
-    #   assert_difference('@field.validations.count',1) do
-    #     put field_url(@field), params: { field: attributes_for(:field, validation_ids: [validation.id])}, headers: authenticated_header(@user), as: :json
-    #   end
-    #   assert_response 200
-    # end
-    #
-    # test "should prevent association with other users tags" do
-    #   tag = create(:tag)
-    #   assert_difference('@field.tags.count',0) do
-    #     put field_url(@field), params: { field: attributes_for(:field, tag_ids: [tag.id])}, headers: authenticated_header(@user), as: :json
-    #   end
-    #   assert_response 404
-    # end
-    #
-    # test "should prevent association with other users validations" do
-    #   validation = create(:validation)
-    #   assert_difference('@field.validations.count', 0) do
-    #     put field_url(@field), params: { field: attributes_for(:field, validation_ids: [validation.id])}, headers: authenticated_header(@user), as: :json
-    #   end
-    #   assert_response 404
-    # end
+    test "should create association between field and tag" do
+      tag = @user.tags.create(name: "Tag")
+      put field_url(@field), params: { field: attributes_for(:field, tag_ids: [tag.id])}, headers: authenticated_header(@user), as: :json
+      assert_equal 1, @field.tags.count
+      assert_equal tag.id, @field.tags.first.id
+      assert_response 200
+    end
+
+    test "should create association between field and validation" do
+      validation = @user.validations.create(name: "Validation", type: "Required")
+      put field_url(@field), params: { field: attributes_for(:field, validation_ids: [validation.id])}, headers: authenticated_header(@user), as: :json
+      assert_equal 1, @field.validations.count
+      assert_equal validation.id, @field.validations.first.id
+      assert_response 200
+    end
+
+    test "should prevent association with other users tags" do
+      tag = create(:tag)
+      assert_difference('@field.tags.count',0) do
+        put field_url(@field), params: { field: attributes_for(:field, tag_ids: [tag.id])}, headers: authenticated_header(@user), as: :json
+      end
+      assert_response 404
+    end
+
+    test "should prevent association with other users validations" do
+      validation = create(:validation)
+      assert_difference('@field.validations.count', 0) do
+        put field_url(@field), params: { field: attributes_for(:field, validation_ids: [validation.id])}, headers: authenticated_header(@user), as: :json
+      end
+      assert_response 404
+    end
 
     test "should destroy field" do
       assert_difference('Field.count', -1) do

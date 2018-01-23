@@ -3,6 +3,7 @@ module V1
     before_action :authenticate_user
     before_action :set_validation, only: [:update, :show, :destroy]
     before_action :authorize_user, only: [:update, :show, :destroy]
+    before_action :authorize_fields, only: [:create, :update]
 
     def index
       render json: current_user.validations
@@ -44,8 +45,15 @@ module V1
       render json: {}, status: :not_found unless @validation.owner_id === current_user.id
     end
 
+    def authorize_fields
+      field_ids = validation_params[:field_ids]
+      if (field_ids.present?)
+        render json: {}, status: :not_found if Field.where(id: field_ids).pluck(:owner_id).any? { |id| id != current_user.id }
+      end
+    end
+
     def validation_params
-      params.require(:validation).permit(:name, :type, :options)
+      params.require(:validation).permit(:name, :type, :options, field_ids: [])
     end
   end
 end
