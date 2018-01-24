@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
-export default (props) => {
-  return (<Link to='/register'>Register</Link>)
-}
+export default props => {
+  return <Link to="/register">Register</Link>;
+};
