@@ -1,7 +1,9 @@
 class ValidationSerializer < ActiveModel::Serializer
-  attributes :id, :field_count
+  type 'validations'
 
-  def field_count
-    object.fields.count
+  attributes :id, :validation_type
+
+  def validation_type
+    object.type
   end
 end
