@@ -24,14 +24,16 @@ if (jwt !== null && jwt !== undefined) {
   store.dispatch(actions.loginUserSuccess({ user, jwt }));
 }
 
-const App = (
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <MyApp />
-    </ConnectedRouter>
-  </Provider>
-);
+const App = () => {
+  return (
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <MyApp />
+      </ConnectedRouter>
+    </Provider>
+  );
+};
 
 console.log(App);
 
-ReactDOM.render(App, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
