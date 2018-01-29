@@ -24,7 +24,7 @@ if (jwt !== null && jwt !== undefined) {
   store.dispatch(actions.loginUserSuccess({ user, jwt }));
 }
 
-const App = () => {
+const App = props => {
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
