@@ -19,6 +19,7 @@
     "redux": "^3.6.0",
     "redux-form": "^7.2.1",
     "redux-object": "^0.5.5",
+    "redux-promise-dispatch": "^1.3.0",
     "redux-thunk": "^2.1.0",
     "semantic-ui-react": "^0.77.2"
   },
