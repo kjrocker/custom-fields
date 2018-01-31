@@ -1,8 +1,9 @@
 import normalize from 'json-api-normalizer';
-import { genericAJAX } from './asyncActions';
+import { promiseDispatcher } from 'redux-promise-dispatch';
+import { apiCall } from '../api';
 import * as types from './actionTypes';
 
-function getEndpoint(endpoint) {
+const getEndpoint = endpoint => {
   const request = {
     method: 'GET',
     credentials: 'include',
@@ -12,12 +13,8 @@ function getEndpoint(endpoint) {
     },
     body: {}
   };
-  return genericAJAX(endpoint, request, {
-    start: apiRequest,
-    succeed: apiSuccess,
-    fail: apiFailure
-  });
-}
+  return apiCall(endpoint, request);
+};
 
 const apiSuccess = response => ({
   type: types.API_GET_SUCCESS,
@@ -36,4 +33,4 @@ const apiRequest = request => ({
   payload: request
 });
 
-export default getEndpoint;
+export default promiseDispatcher(getEndpoint, { success: apiSuccess, failure: apiFailure });
