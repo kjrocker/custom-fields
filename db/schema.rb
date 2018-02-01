@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180123034930) do
+ActiveRecord::Schema.define(version: 20180201031241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,10 @@ ActiveRecord::Schema.define(version: 20180123034930) do
     t.bigint "owner_id"
     t.string "name"
     t.text "description"
+    t.string "input_category"
+    t.string "default_value"
+    t.string "placeholder"
+    t.string "caption"
     t.index ["owner_id"], name: "index_fields_on_owner_id"
   end
 

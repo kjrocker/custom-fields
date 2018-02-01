@@ -36,7 +36,7 @@ module V1
     end
 
     def show
-      render json: @field
+      render json: @field, include: ['validations', 'tags']
     end
 
     def destroy
@@ -65,7 +65,7 @@ module V1
     end
 
     def field_params
-      params.require(:field).permit(:name, validation_ids: [], tag_ids: [])
+      params.require(:field).permit(:name, :description, :input_category, :caption, :default_value, :placeholder, validation_ids: [], tag_ids: [])
     end
   end
 end
