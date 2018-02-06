@@ -3,12 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001/api/",
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/enzyme": "^3.1.8",
+    "@types/jest": "^22.1.1",
+    "@types/node": "^9.4.0",
+    "@types/react": "^16.0.36",
+    "@types/react-dom": "^16.0.3",
+    "@types/react-router": "^4.0.21",
+    "@types/redux-form": "^7.0.13",
+    "awesome-typescript-loader": "^3.4.1",
+    "redux-mock-store": "^1.5.1",
+    "typescript": "^2.7.1"
+  },
   "dependencies": {
+    "axios": "^0.17.1",
     "history": "^4.7.2",
-    "json-api-normalizer": "^0.4.7",
+    "json-api-normalizer": "^0.4.8",
     "jwt-decode": "^2.1.0",
     "lodash": "^4.16.2",
+    "qs": "^6.5.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.5",
@@ -16,15 +29,17 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts": "^1.1.0",
+    "react-scripts-ts": "^2.13.0",
     "redux": "^3.6.0",
-    "redux-form": "^7.2.1",
+    "redux-form": "^7.2.3",
     "redux-object": "^0.5.5",
+    "redux-promise-dispatch": "^1.4.6",
     "redux-thunk": "^2.1.0",
     "semantic-ui-react": "^0.77.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom"
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom"
   }
 }
