@@ -5,6 +5,7 @@
   "proxy": "http://localhost:3001/api/",
   "devDependencies": {},
   "dependencies": {
+    "axios": "^0.17.1",
     "history": "^4.7.2",
     "json-api-normalizer": "^0.4.7",
     "jwt-decode": "^2.1.0",
