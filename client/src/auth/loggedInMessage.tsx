@@ -1,12 +1,12 @@
-import React from 'react'
+import * as React from 'react';
 
-import StatusBar from './statusBar'
+import StatusBar from './statusBar';
 
 const loggedInMessage = ({ statusText }) => (
   <div>
-    <StatusBar text={statusText}/>
+    <StatusBar text={statusText} />
     <p>You are already logged in!</p>
   </div>
-)
+);
 
 export default loggedInMessage;

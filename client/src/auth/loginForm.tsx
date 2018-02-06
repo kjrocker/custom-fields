@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -6,7 +6,7 @@ import { Form, Button } from 'semantic-ui-react';
 
 import { loginUser } from './actions';
 
-class LoginForm extends Component {
+class LoginForm extends React.Component<any, any> {
   login = values => {
     const redirectRoute = this.props.redirect || '/';
     this.props.actions.loginUser(values, redirectRoute);
@@ -24,7 +24,7 @@ class LoginForm extends Component {
           <label htmlFor="auth[password]">Password</label>
           <Field name="auth[password]" component="input" type="password" />
         </Form.Field>
-        <Button primary type="submit">
+        <Button primary={true} type="submit">
           Login
         </Button>
       </Form>

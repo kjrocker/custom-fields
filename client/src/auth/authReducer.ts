@@ -1,15 +1,15 @@
 import { LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGOUT_USER, LOGIN_USER_SUCCESS } from './actionTypes';
 
 const initialState = {
-    token: null,
-    currentUser: {},
-    isAuthenticated: false,
-    isAuthenticating: false,
-    statusText: null
+  token: null,
+  currentUser: {},
+  isAuthenticated: false,
+  isAuthenticating: false,
+  statusText: null
 };
 
 const reducer = (state = initialState, { type, payload }) => {
-  switch(type) {
+  switch (type) {
     case LOGIN_USER_REQUEST:
       return {
         ...state,
@@ -26,7 +26,7 @@ const reducer = (state = initialState, { type, payload }) => {
         statusText: 'You are now logged in.'
       };
     case LOGIN_USER_FAILURE:
-      const { status, statusText } = payload.error.response
+      const { status, statusText } = payload.error.response;
       return {
         ...state,
         isAuthenticating: false,
@@ -44,7 +44,7 @@ const reducer = (state = initialState, { type, payload }) => {
         statusText: 'You are now logged out.'
       };
     default:
-      return state
+      return state;
   }
 };
 

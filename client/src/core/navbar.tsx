@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 import { connect } from 'react-redux';
@@ -28,7 +28,7 @@ const RightMenu = ({ isAuthenticated }) => {
   }
 };
 
-class NavBar extends Component {
+class NavBar extends React.Component<any, any> {
   render() {
     const { isAuthenticated } = this.props;
     return (

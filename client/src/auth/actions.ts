@@ -2,8 +2,8 @@ import * as types from './actionTypes';
 
 import { genericAJAX, postFormRequest, addRedirect } from '../helpers/asyncActions';
 
-function registerUser(form_obj) {
-  const request = postFormRequest(form_obj);
+function registerUser(formObj: any) {
+  const request = postFormRequest(formObj, '');
   return genericAJAX('/users', request, {
     start: loginUserRequest,
     succeed: addRedirect(loginUserSuccess, '/'),
@@ -11,8 +11,8 @@ function registerUser(form_obj) {
   });
 }
 
-function loginUser(form_obj, redirect = '/') {
-  const request = postFormRequest(form_obj);
+function loginUser(formObj: any, redirect: string = '/') {
+  const request = postFormRequest(formObj, '');
   return genericAJAX('/user_token', request, {
     start: loginUserRequest,
     succeed: addRedirect(loginUserSuccess, redirect),
@@ -20,7 +20,7 @@ function loginUser(form_obj, redirect = '/') {
   });
 }
 
-function loginUserSuccess({ user, jwt }) {
+function loginUserSuccess({ user, jwt }: any) {
   localStorage.setItem('token', jwt);
   localStorage.setItem('user', user);
   return {
@@ -32,7 +32,7 @@ function loginUserSuccess({ user, jwt }) {
   };
 }
 
-function loginUserFailure(error) {
+function loginUserFailure(error: any) {
   localStorage.removeItem('token');
   localStorage.removeItem('user');
   return {

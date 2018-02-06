@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import build from 'redux-object';
@@ -6,7 +6,7 @@ import build from 'redux-object';
 import { requireAuthentication } from '../helpers';
 import getFields from './getFields';
 
-class FieldList extends Component {
+class FieldList extends React.Component<any, any> {
   componentWillMount() {
     this.props.actions.getFields();
   }

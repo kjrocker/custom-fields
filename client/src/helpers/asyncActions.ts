@@ -1,11 +1,11 @@
 import { push } from 'react-router-redux';
 
-function checkHttpStatus(response) {
+function checkHttpStatus(response: any) {
   if (response.status >= 200 && response.status < 300) {
     return response;
   } else {
     var error = new Error(response.statusText);
-    error.response = response;
+    (error as any).response = response;
     throw error;
   }
 }
@@ -30,9 +30,9 @@ const postFormRequest = formRequest('post');
 
 // Take an action, return a function that takes the same arguments, passes
 // those arguments to the given action, and then dispatches a page redirect.
-function addRedirect(action, redirect) {
-  return function(...args) {
-    return function(dispatch) {
+function addRedirect(action: any, redirect: any) {
+  return function(...args: any[]) {
+    return function(dispatch: any) {
       dispatch(action(...args));
       dispatch(push(redirect));
     };
@@ -43,8 +43,8 @@ function addRedirect(action, redirect) {
 // the specified actions through the reducer on request start, request
 // success, and request failure. Passes the response and error into the
 // success and failure actions, respectively.
-function genericAJAX(endpoint, request, { start, succeed, fail }) {
-  return function(dispatch, getState) {
+function genericAJAX(endpoint: string, request: any, { start, succeed, fail }: any) {
+  return function(dispatch: any, getState: any) {
     const authToken = getState().auth.token;
     if (authToken !== undefined) {
       request.headers.Authorization = authToken;

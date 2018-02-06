@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Route, Switch } from 'react-router';
 import App from './app';
 import ProtectedComponent from './protectedExample';
@@ -11,7 +11,7 @@ const SimpleComponent = props => <div> I'm a dummy component! </div>;
 const MyRouter = props => (
   <App>
     <Switch>
-      <Route exact path="/" component={SimpleComponent} />
+      <Route exact={true} path="/" component={SimpleComponent} />
       <Route path="/fields" component={FieldList} />
       <Route path="/protected" component={ProtectedComponent} />
       <Route path="/login" component={LoginWrapper} />
