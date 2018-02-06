@@ -3,16 +3,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import build from 'redux-object';
 
-import { requireAuthentication, getEndpoint } from '../helpers';
+import { requireAuthentication } from '../helpers';
+import getFields from './getFields';
 
 class FieldList extends Component {
   componentWillMount() {
-    this.props.actions.getEndpoint('/fields');
+    this.props.actions.getFields();
   }
 
   renderField = (field, key) => (
     <div key={key}>
-      {field.id} - {field.name} has {field.validationCount} validation(s){' '}
+      {field.id} - {field.name} has {field.validations.length} validation(s){' '}
       {field.validationCount > 0 ? `with type ${field.validations[0].type}` : ''}
     </div>
   );
@@ -22,7 +23,7 @@ class FieldList extends Component {
     return (
       <div>
         {fields.map(this.renderField)}
-        <button onClick={e => this.props.actions.getEndpoint('/fields', {})}>Click ME!</button>
+        <button onClick={e => this.props.actions.getFields()}>Click ME!</button>
       </div>
     );
   }
@@ -33,7 +34,7 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  actions: bindActionCreators({ getEndpoint }, dispatch)
+  actions: bindActionCreators({ getFields }, dispatch)
 });
 
 export default requireAuthentication(connect(mapState, mapDispatch)(FieldList));

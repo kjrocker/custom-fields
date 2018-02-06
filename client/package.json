@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001/api/",
-  "devDependencies": {},
+  "devDependencies": {
+    "redux-promise-dispatch": "^1.4.4"
+  },
   "dependencies": {
     "axios": "^0.17.1",
     "history": "^4.7.2",
