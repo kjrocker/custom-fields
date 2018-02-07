@@ -3,7 +3,7 @@ import * as types from './actionTypes';
 
 const jsonApiSuccess = response => ({
   type: types.API_GET_SUCCESS,
-  payload: { data: normalize(response.data) }
+  payload: { data: normalize(response) }
 });
 
 const jsonApiFailure = response => ({

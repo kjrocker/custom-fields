@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import merge from 'lodash/merge';
+import { merge } from 'lodash';
 
 const reducer = (state = {}, { type, payload }) => {
   switch (type) {

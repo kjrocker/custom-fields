@@ -2,7 +2,7 @@ import { authApi } from '../api';
 import { promiseDispatcher } from 'redux-promise-dispatch';
 import * as types from './actionTypes';
 
-import { addRedirect } from '../helpers/asyncActions';
+import { addRedirect } from '../helpers';
 
 const loginUserRequest = () => {
   return {
@@ -10,7 +10,7 @@ const loginUserRequest = () => {
   };
 };
 
-const loginUserSuccess = (creds: { user: any; jwt: string }) => {
+const loginUserSuccess = (creds: any) => {
   localStorage.setItem('token', creds.jwt);
   localStorage.setItem('user', creds.user);
   return {
