@@ -7,7 +7,6 @@ import { FieldList } from '../fields';
 
 const SimpleComponent = props => <div> I'm a dummy component! </div>;
 
-// Simplest Router. Home, login, register, and a page requiring login
 const MyRouter = props => (
   <App>
     <Switch>

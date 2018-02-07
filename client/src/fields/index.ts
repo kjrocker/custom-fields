@@ -1,2 +1,2 @@
-import FieldList from './fieldList';
+import FieldList from './FieldList';
 export { FieldList };

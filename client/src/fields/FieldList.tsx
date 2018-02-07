@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import build from 'redux-object';
+import { Table } from 'semantic-ui-react';
 
 import { requireAuthentication } from '../helpers';
 import { getFields, getValidations, getTags } from './getData';
@@ -14,19 +15,27 @@ class FieldList extends React.Component<any, any> {
   }
 
   renderField = (field, key) => (
-    <div key={key}>
-      {field.id} - {field.name} has {field.validations.length} validation(s){' '}
-      {field.validationCount > 0 ? `with type ${field.validations[0].type}` : ''}
-    </div>
+    <Table.Row key={key}>
+      <Table.Cell>{field.id}</Table.Cell>
+      <Table.Cell>{field.name}</Table.Cell>
+      <Table.Cell>{field.validations.length}</Table.Cell>
+    </Table.Row>
   );
 
   render() {
     const fields = this.props.fields === undefined || this.props.fields === null ? [] : this.props.fields;
     return (
-      <div>
-        {fields.map(this.renderField)}
-        <button onClick={e => this.props.actions.getFields()}>Click ME!</button>
-      </div>
+      <Table celled={true}>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Header</Table.HeaderCell>
+            <Table.HeaderCell>Header</Table.HeaderCell>
+            <Table.HeaderCell>Header</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+
+        <Table.Body>{fields.map(this.renderField)}</Table.Body>
+      </Table>
     );
   }
 }
