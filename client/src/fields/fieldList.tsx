@@ -4,11 +4,13 @@ import { bindActionCreators } from 'redux';
 import build from 'redux-object';
 
 import { requireAuthentication } from '../helpers';
-import getFields from './getFields';
+import { getFields, getValidations, getTags } from './getData';
 
 class FieldList extends React.Component<any, any> {
   componentWillMount() {
     this.props.actions.getFields();
+    this.props.actions.getValidations();
+    this.props.actions.getTags();
   }
 
   renderField = (field, key) => (
@@ -34,7 +36,7 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  actions: bindActionCreators({ getFields }, dispatch)
+  actions: bindActionCreators({ getFields, getValidations, getTags }, dispatch)
 });
 
 export default requireAuthentication(connect(mapState, mapDispatch)(FieldList));

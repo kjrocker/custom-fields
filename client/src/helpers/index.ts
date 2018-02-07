@@ -1,5 +1,5 @@
-import { addRedirect, formRequest, genericAJAX } from './asyncActions';
+import addRedirect from './addRedirect';
 import apiReducer from './apiReducer';
 import requireAuthentication from './requireAuthentication';
 
-export { addRedirect, formRequest, genericAJAX, requireAuthentication, apiReducer };
+export { addRedirect, requireAuthentication, apiReducer };
