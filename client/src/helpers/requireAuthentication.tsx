@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import { stringify } from 'qs';
 
 const requireAuthentication = (BaseComponent: any) => {
   class AuthenticatedComponent extends React.Component<any, {}> {
@@ -15,7 +16,7 @@ const requireAuthentication = (BaseComponent: any) => {
     checkAuth(isAuthenticated: boolean) {
       if (!isAuthenticated) {
         const redirectAfterLogin = this.props.location.pathname;
-        this.props.dispatch(push(`/login?next=${redirectAfterLogin}`));
+        this.props.dispatch(push(`/login?${stringify({ next: redirectAfterLogin })}`));
       }
     }
 

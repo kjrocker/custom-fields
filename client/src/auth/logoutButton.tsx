@@ -2,10 +2,10 @@ import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { logoutUser } from './actions';
+import { logoutUser } from '../redux/actions';
 
-const logoutButton = props => {
-  return <a onClick={() => props.actions.logoutUser()}>Logout</a>;
+const logoutButton = ({ actions }) => {
+  return <a onClick={actions.logoutUser}>Logout</a>;
 };
 
 const mapDispatchToProps = dispatch => ({

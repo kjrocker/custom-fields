@@ -5,7 +5,7 @@ import build from 'redux-object';
 import { Table } from 'semantic-ui-react';
 
 import { requireAuthentication } from '../helpers';
-import { getFields, getValidations, getTags } from './getData';
+import { getFields, getValidations, getTags } from '../redux/actions';
 
 class FieldList extends React.Component<any, any> {
   componentWillMount() {

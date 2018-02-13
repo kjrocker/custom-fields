@@ -1,6 +1,6 @@
 import axios from './axios';
-import fieldApiGenerator from './fieldApiGenerator';
-import authApiGenerator from './authApiGenerator';
+import fieldApiGenerator from './fieldApi';
+import authApiGenerator from './authApi';
 
 const fieldApi = fieldApiGenerator(axios);
 const authApi = authApiGenerator(axios);

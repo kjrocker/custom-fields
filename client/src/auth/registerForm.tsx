@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Form, Button } from 'semantic-ui-react';
 
-import { registerUser } from './actions';
+import { registerUser } from '../redux/actions';
 
 class RegisterForm extends React.Component<any, any> {
   register = values => {

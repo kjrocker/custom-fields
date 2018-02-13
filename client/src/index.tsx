@@ -6,8 +6,9 @@ import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
 import { routerMiddleware, ConnectedRouter } from 'react-router-redux';
 
-import { RootReducer, MyApp } from './core';
-import { actions } from './auth';
+import { App } from './core';
+import rootReducer from './redux';
+import { loginUserSuccess } from './redux/actions';
 
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -15,25 +16,23 @@ const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||
 const history = createHistory();
 const reduxRouterMiddleware = routerMiddleware(history);
 
-const store = createStore(RootReducer, composeEnhancers(applyMiddleware(thunk, reduxRouterMiddleware)));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk, reduxRouterMiddleware)));
 
 // This is good. Auth logic. Keep this.
 let jwt = localStorage.getItem('token');
 let user = localStorage.getItem('user');
 if (jwt !== null && jwt !== undefined) {
-  store.dispatch(actions.loginUserSuccess({ user, jwt }));
+  store.dispatch(loginUserSuccess({ user, jwt }));
 }
 
-const App = props => {
+const ConnectedApp = props => {
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <MyApp />
+        <App />
       </ConnectedRouter>
     </Provider>
   );
 };
 
-console.log(App);
-
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<ConnectedApp />, document.getElementById('root'));

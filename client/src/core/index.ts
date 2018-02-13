@@ -1,7 +1,3 @@
-import MyApp from './router'
-import RootReducer from './reducers'
+import App from './router';
 
-export {
-  MyApp,
-  RootReducer
-};
+export { App };

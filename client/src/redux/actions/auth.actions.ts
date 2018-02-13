@@ -1,7 +1,6 @@
-import { authApi } from '../api';
+import { authApi } from '../../api';
 import { promiseDispatcher } from 'redux-promise-dispatch';
-import * as types from './actionTypes';
-
+import * as types from './types';
 import { addRedirect } from '../helpers';
 
 const loginUserRequest = () => {
@@ -52,6 +51,4 @@ const logoutUser = () => {
   };
 };
 
-const logoutAndRedirect = addRedirect(logoutUser, '/login');
-
-export { registerUser, loginUser, logoutAndRedirect, loginUserSuccess, loginUserFailure, loginUserRequest, logoutUser };
+export { registerUser, loginUser, loginUserSuccess, loginUserFailure, loginUserRequest, logoutUser };

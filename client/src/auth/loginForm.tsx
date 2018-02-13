@@ -3,12 +3,13 @@ import { Field, reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Form, Button } from 'semantic-ui-react';
+import { parse } from 'qs';
 
-import { loginUser } from './actions';
+import { loginUser } from '../redux/actions';
 
 class LoginForm extends React.Component<any, any> {
   login = values => {
-    const redirectRoute = this.props.redirect || '/';
+    const redirectRoute = parse(this.props.redirect).next || '/';
     this.props.actions.loginUser(values, redirectRoute);
   };
 

@@ -1,17 +1,7 @@
-import * as actions from './actions'
 import RegisterWrapper from './registerWrapper';
 import LoginWrapper from './loginWrapper';
-import LoginButton from './loginButton'
-import LogoutButton from './logoutButton'
-import RegisterButton from './registerButton'
-import reducer from './authReducer'
+import LoginButton from './loginButton';
+import LogoutButton from './logoutButton';
+import RegisterButton from './registerButton';
 
-export {
-  actions,
-  RegisterWrapper,
-  LoginWrapper,
-  LoginButton,
-  LogoutButton,
-  RegisterButton,
-  reducer
-};
+export { RegisterWrapper, LoginWrapper, LoginButton, LogoutButton, RegisterButton };
