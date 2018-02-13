@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import LoggedInMessage from './loggedInMessage';
-import LoginForm from './loginForm';
-import StatusBar from './statusBar';
+import LoggedInMessage from '../../auth/loggedInMessage';
+import LoginForm from './LoginForm';
+import StatusBar from '../../components/statusBar';
 
 class LoginWrapper extends React.Component<any, any> {
   render() {

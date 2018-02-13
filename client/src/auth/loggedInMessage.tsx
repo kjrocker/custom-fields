@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import StatusBar from './statusBar';
+import StatusBar from '../components/statusBar';
 
 const loggedInMessage = ({ statusText }) => (
   <div>

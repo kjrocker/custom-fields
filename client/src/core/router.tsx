@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { Route, Switch } from 'react-router';
 import App from './app';
-import ProtectedComponent from './protectedExample';
-import { LoginWrapper, RegisterWrapper } from '../auth';
-import { FieldList } from '../fields';
+import { Login, Register, FieldList } from '../pages';
 
 const SimpleComponent = props => <div> I'm a dummy component! </div>;
 
@@ -12,9 +10,8 @@ const MyRouter = props => (
     <Switch>
       <Route exact={true} path="/" component={SimpleComponent} />
       <Route path="/fields" component={FieldList} />
-      <Route path="/protected" component={ProtectedComponent} />
-      <Route path="/login" component={LoginWrapper} />
-      <Route path="/register" component={RegisterWrapper} />
+      <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
     </Switch>
   </App>
 );

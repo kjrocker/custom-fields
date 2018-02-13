@@ -19,6 +19,7 @@ class FieldList extends React.Component<any, any> {
       <Table.Cell>{field.id}</Table.Cell>
       <Table.Cell>{field.name}</Table.Cell>
       <Table.Cell>{field.validations.length}</Table.Cell>
+      <Table.Cell>{field.validations[0] ? field.validations[0].name : 'No Validations'}</Table.Cell>
     </Table.Row>
   );
 
@@ -28,9 +29,10 @@ class FieldList extends React.Component<any, any> {
       <Table celled={true}>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Header</Table.HeaderCell>
-            <Table.HeaderCell>Header</Table.HeaderCell>
-            <Table.HeaderCell>Header</Table.HeaderCell>
+            <Table.HeaderCell>Field ID</Table.HeaderCell>
+            <Table.HeaderCell>Field Name</Table.HeaderCell>
+            <Table.HeaderCell># of Validations</Table.HeaderCell>
+            <Table.HeaderCell>First Validation Name</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -48,4 +50,6 @@ const mapDispatch = dispatch => ({
   actions: bindActionCreators({ getFields, getValidations, getTags }, dispatch)
 });
 
-export default requireAuthentication(connect(mapState, mapDispatch)(FieldList));
+const ConnectedFieldList = connect(mapState, mapDispatch)(FieldList);
+
+export default requireAuthentication(ConnectedFieldList);

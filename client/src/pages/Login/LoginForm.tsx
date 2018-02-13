@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Form, Button } from 'semantic-ui-react';
 import { parse } from 'qs';
 
-import { loginUser } from '../redux/actions';
+import { loginUser } from '../../redux/actions';
 
 class LoginForm extends React.Component<any, any> {
   login = values => {
