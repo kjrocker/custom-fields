@@ -8,12 +8,15 @@ const jsonApiSuccess = response => ({
   payload: { data: normalize(response) }
 });
 
-const jsonApiFailure = response => ({
-  type: types.API_GET_SUCCESS,
-  payload: {
-    error: response
-  }
-});
+const jsonApiFailure = response => {
+  console.log(response);
+  return {
+    type: types.API_GET_SUCCESS,
+    payload: {
+      error: response
+    }
+  };
+};
 
 const jsonApiRequest = request => ({
   type: types.API_GET_REQUEST,
