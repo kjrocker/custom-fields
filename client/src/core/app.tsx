@@ -1,16 +1,19 @@
 import * as React from 'react';
+import { Route } from 'react-router-dom';
+import { Navbar } from '../components/';
 
-import NavBar from '../components/navbar';
+const DefaultLayout = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={matchProps => (
+        <React.Fragment>
+          <Navbar />
+          <Component {...matchProps} />
+        </React.Fragment>
+      )}
+    />
+  );
+};
 
-class MyApp extends React.Component {
-  render() {
-    return (
-      <div>
-        <NavBar />
-        <div>{this.props.children}</div>
-      </div>
-    );
-  }
-}
-
-export default MyApp;
+export default DefaultLayout;

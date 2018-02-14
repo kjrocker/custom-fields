@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import LoggedInMessage from '../../auth/loggedInMessage';
 import LoginForm from './LoginForm';
-import StatusBar from '../../components/statusBar';
+import { StatusBar } from '../../components';
 
 class LoginWrapper extends React.Component<any, any> {
   render() {
     const { statusText, isAuthenticated } = this.props;
-    const ChildComponent = isAuthenticated ? <LoggedInMessage statusText={statusText} /> : <LoginForm />;
+    const ChildComponent = isAuthenticated ? `You are already logged in!` : <LoginForm />;
 
     return (
       <div>

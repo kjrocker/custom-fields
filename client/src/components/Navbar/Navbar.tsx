@@ -13,8 +13,8 @@ class NavBar extends React.Component<any, any> {
         <Menu.Item as={Link} to="/">
           Home
         </Menu.Item>
-        <Menu.Item as={Link} to="/protected">
-          Protected Element
+        <Menu.Item as={Link} to="/fields">
+          Your Fields
         </Menu.Item>
         <Menu.Menu position="right">
           <RightMenu isAuthenticated={isAuthenticated} />

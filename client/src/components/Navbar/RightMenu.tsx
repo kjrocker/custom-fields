@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-import { LogoutButton } from '../auth';
+import { LogoutButton } from '../ActionButton';
 
 const RightMenu = ({ isAuthenticated }) => {
   if (isAuthenticated) {
