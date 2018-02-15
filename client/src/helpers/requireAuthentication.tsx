@@ -16,7 +16,7 @@ const requireAuthentication = (BaseComponent: any) => {
     checkAuth(isAuthenticated: boolean) {
       if (!isAuthenticated) {
         const redirectAfterLogin = this.props.location.pathname;
-        this.props.dispatch(push(`/login?${stringify({ next: redirectAfterLogin })}`));
+        this.props.dispatch(push(`/login?${stringify({ next: redirectAfterLogin })}`, { encode: false }));
       }
     }
 
