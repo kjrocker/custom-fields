@@ -3,6 +3,6 @@ FactoryBot.define do
     name "MyString"
     type 'Length'
     association :owner, factory: :user
-    options {}
+    options { {'minimum' => 1} }
   end
 end

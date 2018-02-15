@@ -1,4 +1,6 @@
 class Length < Validation
+  validate :options_must_be_valid
+
   def is_valid(value)
     valueLength = value.length
     if options['minimum'].present? && valueLength < options['minimum']
@@ -11,6 +13,14 @@ class Length < Validation
       return :invalid
     else
       return :valid
+    end
+  end
+
+  private
+
+  def options_must_be_valid
+    unless options.present? && (options['within'].present? || options['maximum'].present? || options['minimum'].present? || options['exactly'].present?)
+      errors.add(:options, "Length requires whole numbers in any of the following: 'within', 'maximum', 'minimum', 'exactly'")
     end
   end
 end

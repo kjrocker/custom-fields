@@ -12,7 +12,7 @@ module V1
       assert_response :success
     end
 
-    test "should create field" do
+    test "should create validation" do
       assert_difference('Validation.count') do
         post validations_url, params: { validation: attributes_for(:validation) }, headers: authenticated_header(@user), as: :json
       end

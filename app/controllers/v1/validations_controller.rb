@@ -53,7 +53,7 @@ module V1
     end
 
     def validation_params
-      params.require(:validation).permit(:name, :type, :options, field_ids: [])
+      params.require(:validation).permit(:name, :type, options: {}, field_ids: [])
     end
   end
 end
