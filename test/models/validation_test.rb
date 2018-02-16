@@ -40,11 +40,21 @@ class ValidationTest < ActiveSupport::TestCase
 
     test "options should require minimum" do
       @length.options = { "minimum" => 1 }
-      assert @length.valid?, "Options with minimum should be valid"
+      assert @length.valid?
     end
 
     test "options should require exactly" do
       @length.options = { "exactly" => 1 }
+      assert @length.valid?
+    end
+
+    test "options should accept unknown attributes" do
+      @length.options = { "exactly" => 1, "batman" => 2 }
+      assert @length.valid?
+    end
+
+    test "options will accept combinations of attributes" do
+      @length.options = { "maximum" => 4, "minimum" => 2 }
       assert @length.valid?
     end
   end
