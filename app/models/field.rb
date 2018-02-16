@@ -10,4 +10,8 @@ class Field < ApplicationRecord
   def process_value(value)
     Validation::Result.new(validations, value)
   end
+
+  def self.with_tags(tags)
+    joins(:taggings).where('taggings.tag_id = ?', tags)
+  end
 end

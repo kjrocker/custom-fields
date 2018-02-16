@@ -9,17 +9,17 @@ import { getFields, getValidations, getTags } from '../redux/actions';
 
 class FieldList extends React.Component<any, any> {
   componentWillMount() {
-    this.props.actions.getFields();
-    this.props.actions.getValidations();
-    this.props.actions.getTags();
+    this.props.actions.getFields([1]);
+    // this.props.actions.getValidations();
+    // this.props.actions.getTags();
   }
 
   renderField = (field, key) => (
     <Table.Row key={key}>
       <Table.Cell>{field.id}</Table.Cell>
       <Table.Cell>{field.name}</Table.Cell>
-      <Table.Cell>{field.validations.length}</Table.Cell>
-      <Table.Cell>{field.validations[0] ? field.validations[0].name : 'No Validations'}</Table.Cell>
+      <Table.Cell>{field.tags.map(t => t.id).join(', ')}</Table.Cell>
+      {/* <Table.Cell>{field.validations[0] ? field.validations[0].name : 'No Validations'}</Table.Cell> */}
     </Table.Row>
   );
 
@@ -32,7 +32,7 @@ class FieldList extends React.Component<any, any> {
             <Table.HeaderCell>Field ID</Table.HeaderCell>
             <Table.HeaderCell>Field Name</Table.HeaderCell>
             <Table.HeaderCell># of Validations</Table.HeaderCell>
-            <Table.HeaderCell>First Validation Name</Table.HeaderCell>
+            {/* <Table.HeaderCell>First Validation Name</Table.HeaderCell> */}
           </Table.Row>
         </Table.Header>
 

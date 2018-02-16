@@ -9,6 +9,24 @@ module V1
 
     test "should get index" do
       get fields_url, headers: authenticated_header(@user), as: :json
+      assert_equal json_body(@response)['data'].length, 1
+      assert_response :success
+    end
+
+    test "should search by tags" do
+      second_field = build(:field, owner: @user)
+      first_tag = create(:tag, owner: @user)
+      first_tag.fields << second_field
+      first_tag.save
+      get fields_url, headers: authenticated_header(@user), as: :json
+      assert_equal 1, first_tag.fields.count
+      assert_equal first_tag.fields.first.id, second_field.id
+      assert_equal 2, json_body(@response)['data'].length
+      assert_response :success
+
+      get fields_url, params: { tags: [first_tag.id] }, headers: authenticated_header(@user)
+      puts @request.inspect
+      assert_equal @field.id, json_body(@response)['data']['id'].to_i
       assert_response :success
     end
 

@@ -15,7 +15,12 @@ module V1
     end
 
     def index
-      render json: current_user.fields
+      @fields = if search_params[:tags]
+        Field.with_tags(search_params[:tags]).where(owner_id: current_user.id)
+      else
+        current_user.fields
+      end
+      render json: @fields
     end
 
     def create
@@ -62,6 +67,10 @@ module V1
       elsif (val_ids.present?)
         render json: {}, status: :not_found if Validation.where(id: val_ids).pluck(:owner_id).any? { |id| id != current_user.id}
       end
+    end
+
+    def search_params
+      params.permit(tags: [])
     end
 
     def field_params

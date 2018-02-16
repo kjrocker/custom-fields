@@ -8,4 +8,8 @@ class ActiveSupport::TestCase
   def authenticated_header(user)
     { 'Authorization' => "Bearer #{user.to_jwt}" }
   end
+
+  def json_body(response)
+    ActiveSupport::JSON.decode response.body
+  end
 end
