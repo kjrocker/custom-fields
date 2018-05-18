@@ -12,7 +12,7 @@ module V1
       assert_equal json_body(@response)['data'].length, 1
       assert_response :success
     end
-
+  
     test "should search by tags" do
       second_field = build(:field, owner: @user)
       first_tag = create(:tag, owner: @user)
@@ -25,8 +25,7 @@ module V1
       assert_response :success
 
       get fields_url, params: { tags: [first_tag.id] }, headers: authenticated_header(@user)
-      puts @request.inspect
-      assert_equal @field.id, json_body(@response)['data']['id'].to_i
+      assert_equal second_field.id, json_body(@response)['data'][0]['id'].to_i
       assert_response :success
     end
 

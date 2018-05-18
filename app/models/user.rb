@@ -4,6 +4,9 @@ class User < ApplicationRecord
   has_many :tags, foreign_key: :owner_id
   has_many :validations, foreign_key: :owner_id
 
+  has_many :memberships, dependent: :destroy
+  has_many :organizations, through: :memberships
+
   validates :email, presence: true, uniqueness: true
 
   # Simple wrapper for Knock, making it easy to grab new tokens

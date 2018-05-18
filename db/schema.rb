@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180201031241) do
+ActiveRecord::Schema.define(version: 20180324204429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,22 @@ ActiveRecord::Schema.define(version: 20180201031241) do
     t.string "placeholder"
     t.string "caption"
     t.index ["owner_id"], name: "index_fields_on_owner_id"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "organization_id"
+    t.jsonb "permissions"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_memberships_on_organization_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -78,6 +94,8 @@ ActiveRecord::Schema.define(version: 20180201031241) do
   add_foreign_key "field_validations", "fields"
   add_foreign_key "field_validations", "validations"
   add_foreign_key "fields", "users", column: "owner_id"
+  add_foreign_key "memberships", "organizations"
+  add_foreign_key "memberships", "users"
   add_foreign_key "taggings", "fields"
   add_foreign_key "taggings", "tags"
   add_foreign_key "tags", "users", column: "owner_id"
