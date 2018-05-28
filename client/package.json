@@ -35,11 +35,15 @@
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/react-fontawesome": "0.0.20",
     "axios": "^0.17.1",
+    "bundle-loader": "^0.5.6",
     "final-form": "^4.6.1",
     "history": "^4.7.2",
     "i18next": "^11.3.2",
+    "i18next-browser-languagedetector": "^2.2.0",
+    "i18next-fetch-backend": "^0.1.0",
     "i18next-xhr-backend": "^1.5.1",
     "json-api-normalizer": "^0.4.10",
+    "json-loader": "^0.5.7",
     "json-stable-stringify": "^1.0.1",
     "jwt-decode": "^2.1.0",
     "qs": "^6.5.2",
@@ -67,5 +71,40 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
-  "jest": {}
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}"
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.ts",
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.(j|t)s?(x)",
+      "<rootDir>/src/**/?(*.)(spec|test).(j|t)s?(x)"
+    ],
+    "testEnvironment": "node",
+    "testURL": "http://localhost",
+    "transform": {
+      "\\.(ts|tsx)$": "ts-jest"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$"
+    ],
+    "moduleFileExtensions": [
+      "web.ts",
+      "ts",
+      "web.tsx",
+      "js",
+      "jsx",
+      "tsx",
+      "json",
+      "node"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  }
 }

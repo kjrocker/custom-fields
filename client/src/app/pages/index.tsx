@@ -8,4 +8,4 @@ const App = (props) => (
   </React.Fragment>
 );
 
-export default translate('namespace1')(App);
+export default translate('common')(App);

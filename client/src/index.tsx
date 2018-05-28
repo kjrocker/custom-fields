@@ -8,7 +8,7 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import App from './app/pages';
 import rootReducer from './app/redux';
-import i18n from './lib/i18next/i18next';
+import i18n from './lib/i18next';
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const history = createBrowserHistory();
