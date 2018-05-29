@@ -5,6 +5,14 @@ import withProps from './withProps';
 
 const BaseDiv: React.ComponentType<any> = (props) => <div {...props} />;
 
+describe('mapProps', () => {
+  it('wraps the name correctly', () => {
+    BaseDiv.displayName = 'DIV';
+    const WrappedComponent = withProps(() => ({}))(BaseDiv);
+    expect(WrappedComponent.displayName).toBe('withProps(DIV)');
+  });
+});
+
 describe('when mapProps doesnt depend on props', () => {
   const setDefaultClass = () => ({ className: 'default' });
 
