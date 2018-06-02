@@ -14,7 +14,7 @@ const serializeArray = (args: any[]) => {
 };
 
 const serialize = (...args: any[]): string => {
-  return serializeArray(args);
+  return btoa(serializeArray(args));
 };
 
 export default serialize;

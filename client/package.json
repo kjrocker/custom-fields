@@ -34,9 +34,13 @@
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/react-fontawesome": "0.0.20",
+    "@types/i18next": "^8.4.3",
+    "@types/react-i18next": "^7.6.1",
     "axios": "^0.17.1",
     "bundle-loader": "^0.5.6",
     "final-form": "^4.6.1",
+    "final-form-calculate": "^1.1.0",
+    "final-form-set-field-data": "^1.0.1",
     "history": "^4.7.2",
     "i18next": "^11.3.2",
     "i18next-browser-languagedetector": "^2.2.0",
@@ -62,47 +66,30 @@
     "redux": "^3.6.0",
     "redux-object": "^0.5.6",
     "redux-promise-dispatch": "^1.4.9",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "styled-components": "^3.3.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "eject": "react-scripts-ts eject",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "jest --env=jsdom",
+    "test:watch": "jest --watch --env=jsdom"
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}"
-    ],
+    "collectCoverageFrom": ["src/**/*.{js,jsx,ts,tsx}"],
     "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.ts",
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.(j|t)s?(x)",
-      "<rootDir>/src/**/?(*.)(spec|test).(j|t)s?(x)"
-    ],
+    "testMatch": ["<rootDir>/src/**/__tests__/**/*.(j|t)s?(x)", "<rootDir>/src/**/?(*.)(spec|test).(j|t)s?(x)"],
     "testEnvironment": "node",
     "testURL": "http://localhost",
     "transform": {
       "\\.(ts|tsx)$": "ts-jest"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$"
-    ],
-    "moduleFileExtensions": [
-      "web.ts",
-      "ts",
-      "web.tsx",
-      "js",
-      "jsx",
-      "tsx",
-      "json",
-      "node"
-    ]
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$"],
+    "moduleFileExtensions": ["web.ts", "ts", "web.tsx", "js", "jsx", "tsx", "json", "node"]
   },
   "babel": {
-    "presets": [
-      "react-app"
-    ]
+    "presets": ["react-app"]
   },
   "eslintConfig": {
     "extends": "react-app"

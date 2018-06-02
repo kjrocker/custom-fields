@@ -8,6 +8,7 @@
     "curly": false,
     "eofline": false,
     "forin": true,
+
     "no-implicit-dependencies": [true, "dev"],
     "indent": [true, "spaces"],
     "interface-name": [true, "never-prefix"],
@@ -18,6 +19,7 @@
     "max-line-length": [true, 120],
     "member-ordering": true,
     "no-any": false,
+    "jsx-curly-spacing": false,
     "no-arg": true,
     "no-bitwise": true,
     "no-console": [false, "log", "error", "debug", "info", "time", "timeEnd", "trace"],

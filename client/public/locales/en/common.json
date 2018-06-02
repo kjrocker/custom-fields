@@ -1,3 +1,7 @@
 {
-  "key": "hello from namespace 2"
+  "forms": {
+    "usernameLabel": "Username",
+    "passwordLabel": "Password",
+    "passwordConfirmationLabel": "Confirm Password"
+  }
 }

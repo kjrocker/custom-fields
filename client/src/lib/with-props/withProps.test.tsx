@@ -5,11 +5,22 @@ import withProps from './withProps';
 
 const BaseDiv: React.ComponentType<any> = (props) => <div {...props} />;
 
-describe('mapProps', () => {
+describe('mapProps naming', () => {
   it('wraps the name correctly', () => {
     BaseDiv.displayName = 'DIV';
     const WrappedComponent = withProps(() => ({}))(BaseDiv);
     expect(WrappedComponent.displayName).toBe('withProps(DIV)');
+  });
+
+  it('falls back to .name when displayName is unavailable', () => {
+    BaseDiv.displayName = null;
+    const WrappedComponent = withProps(() => ({}))(BaseDiv);
+    expect(WrappedComponent.displayName).toBe('withProps(BaseDiv)');
+  });
+
+  it('falls back to Component when all else fails', () => {
+    const WrappedComponent = withProps(() => ({}))((props) => <div />);
+    expect(WrappedComponent.displayName).toBe('withProps(Component)');
   });
 });
 
