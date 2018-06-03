@@ -1,9 +1,10 @@
 import { promiseDispatcher } from 'redux-promise-dispatch';
-import { EventualPromise } from 'redux-promise-dispatch/lib/types';
+import { EventualPromise, PromiseFunction } from 'redux-promise-dispatch/lib/types';
 import { serialize } from '../../../lib';
 import * as events from '../events';
+import { getSingleRequest } from './request.selector';
 
-export type MapActionOptions = { cache: boolean };
+export type MapActionOptions = { cache?: boolean };
 
 export type MapAction = <F extends EventualPromise>(args: { name: string; method: F; options: MapActionOptions }) => F;
 
@@ -19,12 +20,38 @@ const createActions = (name) => ({
   })
 });
 
-export const mapAction: MapAction = ({ name, method, options }) => {
+const cacheSuccess = (name, response, ...args) => ({
+  type: events.JSON_API_CACHE_SUCCESS,
+  payload: { name, response, request: serialize(args) }
+});
+
+const defaultOptions = { cache: false };
+
+export const mapAction = <F extends EventualPromise>({
+  name,
+  method,
+  options
+}: {
+  name: string;
+  method: F;
+  options: MapActionOptions;
+}): F => {
+  const myOptions = { ...defaultOptions, ...options };
   const baseAction = promiseDispatcher(method, createActions(name));
-  if (!options.cache) {
+  if (!myOptions.cache) {
     return baseAction;
   } else {
-    return baseAction;
+    const singleExecuteFn = (...args: any[]): PromiseFunction => async (dispatch, getState) => {
+      const requestStatus = getSingleRequest(getState(), name, ...args);
+      if (requestStatus && requestStatus.succeeded) {
+        const response = requestStatus.response;
+        dispatch(cacheSuccess(name, response, ...args));
+        return Promise.resolve(requestStatus.response);
+      } else {
+        return dispatch(baseAction(...args));
+      }
+    };
+    return singleExecuteFn as F;
   }
 };
 
