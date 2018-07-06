@@ -55,6 +55,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-final-form": "^3.4.2",
+    "react-final-form-listeners": "^1.0.1",
     "react-i18next": "^7.6.1",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
@@ -77,19 +78,37 @@
     "test:watch": "jest --watch --env=jsdom"
   },
   "jest": {
-    "collectCoverageFrom": ["src/**/*.{js,jsx,ts,tsx}"],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}"
+    ],
     "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.ts",
-    "testMatch": ["<rootDir>/src/**/__tests__/**/*.(j|t)s?(x)", "<rootDir>/src/**/?(*.)(spec|test).(j|t)s?(x)"],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.(j|t)s?(x)",
+      "<rootDir>/src/**/?(*.)(spec|test).(j|t)s?(x)"
+    ],
     "testEnvironment": "node",
     "testURL": "http://localhost",
     "transform": {
       "\\.(ts|tsx)$": "ts-jest"
     },
-    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$"],
-    "moduleFileExtensions": ["web.ts", "ts", "web.tsx", "js", "jsx", "tsx", "json", "node"]
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$"
+    ],
+    "moduleFileExtensions": [
+      "web.ts",
+      "ts",
+      "web.tsx",
+      "js",
+      "jsx",
+      "tsx",
+      "json",
+      "node"
+    ]
   },
   "babel": {
-    "presets": ["react-app"]
+    "presets": [
+      "react-app"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
