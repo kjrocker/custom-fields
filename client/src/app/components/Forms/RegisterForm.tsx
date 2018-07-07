@@ -24,6 +24,6 @@ const mapText = (t, ownProps) => ({
 });
 
 export default compose<any>(
-  finalForm({}),
+  finalForm<{}, {}>({}),
   withText(mapText)
 )(RegisterForm) as React.ComponentType<FormProps>;

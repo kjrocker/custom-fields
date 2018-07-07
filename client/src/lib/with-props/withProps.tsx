@@ -23,7 +23,7 @@ const memoize = (fn) => {
 const withProps = <P, R>(mapPropsBase: (p?: P) => R) => {
   const mapProps = memoize(mapPropsBase) as (p?: P) => R;
   return (WrappedComponent: React.ComponentType<P & R>) => {
-    const Component: React.SFC<P> = (props) => <WrappedComponent {...mapProps(props)} {...props} />;
+    const Component: React.SFC<P & Partial<R>> = (props) => <WrappedComponent {...mapProps(props)} {...props} />;
     Component.displayName = `withProps(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
     return Component;
   };

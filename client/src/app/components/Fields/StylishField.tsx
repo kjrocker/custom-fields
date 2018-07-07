@@ -7,7 +7,7 @@ import {
   FormText,
   Label
   } from 'reactstrap';
-import Error from './Error';
+import { Error } from '../../../lib';
 
 export interface StylishFieldProps extends FieldProps {
   label: string;
